@@ -1,0 +1,1174 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sistem Pertidaksamaan Linear Dua Variabel • Kelas X</title>
+<style>
+  @keyframes move { 100% { transform: translate3d(0,0,1px) rotate(360deg); } }
+  .bg-particles { position:fixed; width:100vw; height:100vh; top:0; left:0; background:#090d16; overflow:hidden; z-index:0; }
+  .bg-particles span { width:20vmin; height:20vmin; border-radius:20vmin; backface-visibility:hidden; position:absolute; animation:move 45s linear infinite; }
+  .bg-particles span:nth-child(1){color:#fffafa;top:36%;left:63%;animation-duration:46s;animation-delay:-29s;transform-origin:-12vw 12vh;box-shadow:40vmin 0 5.8vmin currentColor}
+  .bg-particles span:nth-child(2){color:#f18741;top:41%;left:21%;animation-duration:47s;animation-delay:-16s;transform-origin:-17vw -4vh;box-shadow:40vmin 0 5.1vmin currentColor}
+  .bg-particles span:nth-child(3){color:#f18741;top:92%;left:62%;animation-duration:6s;animation-delay:-39s;transform-origin:4vw -10vh;box-shadow:-40vmin 0 5.8vmin currentColor}
+  .bg-particles span:nth-child(4){color:#fffafa;top:91%;left:88%;animation-duration:27s;animation-delay:-23s;transform-origin:14vw -18vh;box-shadow:40vmin 0 5.8vmin currentColor}
+  .bg-particles span:nth-child(5){color:#fffafa;top:46%;left:93%;animation-duration:46s;animation-delay:-1s;transform-origin:-9vw -8vh;box-shadow:-40vmin 0 5.7vmin currentColor}
+  .bg-particles span:nth-child(6){color:#fffafa;top:29%;left:73%;animation-duration:37s;animation-delay:-45s;transform-origin:-24vw 5vh;box-shadow:40vmin 0 5.7vmin currentColor}
+  .bg-particles span:nth-child(7){color:#f18741;top:45%;left:17%;animation-duration:14s;animation-delay:-15s;transform-origin:-11vw -16vh;box-shadow:40vmin 0 5.5vmin currentColor}
+  .bg-particles span:nth-child(8){color:#5d00ff;top:92%;left:57%;animation-duration:53s;animation-delay:-22s;transform-origin:24vw 20vh;box-shadow:40vmin 0 5.2vmin currentColor}
+  .bg-particles span:nth-child(9){color:#f18741;top:38%;left:60%;animation-duration:6s;animation-delay:-32s;transform-origin:-18vw 25vh;box-shadow:40vmin 0 5.7vmin currentColor}
+  .bg-particles span:nth-child(10){color:#fffafa;top:4%;left:10%;animation-duration:9s;animation-delay:-22s;transform-origin:-15vw -21vh;box-shadow:40vmin 0 5.4vmin currentColor}
+  .bg-particles span:nth-child(11){color:#5d00ff;top:61%;left:52%;animation-duration:35s;animation-delay:-22s;transform-origin:14vw -6vh;box-shadow:40vmin 0 5.6vmin currentColor}
+  .bg-particles span:nth-child(12){color:#f18741;top:41%;left:7%;animation-duration:41s;animation-delay:-33s;transform-origin:-8vw 12vh;box-shadow:40vmin 0 5.9vmin currentColor}
+  .bg-particles span:nth-child(13){color:#5d00ff;top:88%;left:5%;animation-duration:47s;animation-delay:-13s;transform-origin:-9vw -22vh;box-shadow:40vmin 0 5.3vmin currentColor}
+  .bg-particles span:nth-child(14){color:#5d00ff;top:82%;left:67%;animation-duration:22s;animation-delay:-48s;transform-origin:24vw 11vh;box-shadow:40vmin 0 5.5vmin currentColor}
+  .bg-particles span:nth-child(15){color:#fffafa;top:2%;left:7%;animation-duration:24s;animation-delay:-9s;transform-origin:-15vw -2vh;box-shadow:40vmin 0 5.2vmin currentColor}
+
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Roboto,system-ui,sans-serif}
+  body{background:#090d16;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+
+  .login-overlay{position:fixed;inset:0;background:rgba(9,13,22,.96);backdrop-filter:blur(10px);display:flex;justify-content:center;align-items:center;z-index:9999;padding:20px}
+  .login-overlay.hidden{display:none}
+  .login-box{background:#fff;border-radius:22px;padding:32px 28px;max-width:440px;width:100%;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.6);animation:fadeSlide .4s ease}
+  .login-box .login-icon{font-size:3rem;margin-bottom:6px}
+  .login-box h2{color:#0a2540;font-size:1.35rem;margin-bottom:4px}
+  .login-box .login-sub{color:#4a6a8a;font-size:.85rem;margin-bottom:18px}
+  .login-box .login-form-group{text-align:left;margin:12px 0}
+  .login-box .login-form-group label{display:block;font-weight:600;color:#1a3a5a;margin-bottom:6px;font-size:.9rem}
+  .login-box .login-input,.login-box .login-select{width:100%;padding:11px 16px;background:#fff;border:2px solid #d0dce8;border-radius:12px;color:#0a2540;font-size:.95rem;outline:none;transition:.2s}
+  .login-box .login-input:focus,.login-box .login-select:focus{border-color:#0a2540;box-shadow:0 0 0 3px rgba(10,37,64,.1)}
+  .login-box .login-btn{margin-top:16px;background:#0a2540;color:#fff;border:none;padding:12px 40px;border-radius:40px;font-size:1rem;font-weight:700;cursor:pointer;transition:.25s;width:100%}
+  .login-box .login-btn:hover{background:#1a3a5a;transform:translateY(-2px);box-shadow:0 8px 24px rgba(10,37,64,.25)}
+  .login-box .login-note{margin-top:14px;color:#7a9ab5;font-size:.75rem;line-height:1.5}
+
+  .siswa-badge{position:absolute;top:12px;right:16px;background:rgba(10,37,64,.92);color:#fff;padding:5px 16px;border-radius:20px;font-size:.78rem;font-weight:600;z-index:20;display:none;box-shadow:0 4px 14px rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.15)}
+  .siswa-badge.active{display:block}
+  .siswa-badge .sb-sep{opacity:.5;margin:0 6px}
+
+  .slide-container{width:100%;max-width:1100px;aspect-ratio:16/9;background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden;display:flex;flex-direction:column;position:relative;z-index:1}
+  .slide-content{flex:1;overflow-y:auto;padding:16px 24px;scroll-behavior:smooth}
+  .slide-content::-webkit-scrollbar{width:4px}
+  .slide-content::-webkit-scrollbar-track{background:#eef2f6}
+  .slide-content::-webkit-scrollbar-thumb{background:#0a2540;border-radius:10px}
+  .slide{display:none;animation:fadeSlide .35s ease}
+  .slide.active{display:block}
+  @keyframes fadeSlide{0%{opacity:.3;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
+
+  .slide-nav{display:flex;justify-content:space-between;align-items:center;padding:8px 24px;background:#f9fbfd;border-top:1px solid #e6edf4;flex-shrink:0}
+  .slide-nav .indicator{color:#4a6a8a;font-weight:600;font-size:.8rem}
+  .slide-nav .indicator span{color:#0a2540;font-weight:700}
+  .nav-btn{background:#0a2540;border:none;padding:5px 18px;border-radius:40px;color:#fff;font-weight:600;font-size:.8rem;cursor:pointer;transition:.2s}
+  .nav-btn:hover{background:#1a3a5a;transform:scale(1.02)}
+  .nav-btn:disabled{background:#b0c4d8;cursor:not-allowed;transform:none}
+  .nav-btn-secondary{background:#eef2f6;color:#0a2540}
+  .nav-btn-secondary:hover{background:#dce4ec}
+
+  .card{background:#f9fbfd;border-radius:12px;padding:12px 16px;margin-bottom:10px;margin-top:10px;border:1px solid #e6edf4}
+  .card-title{font-size:1.1rem;font-weight:700;color:#0a2540;margin-bottom:4px}
+  .card-sub{color:#1e3a5a;font-size:.85rem;line-height:1.5}
+  .tujuan-box{background:#eaf2fa;border-radius:8px;padding:8px 14px;margin-bottom:8px;border-left:4px solid #f5b342;font-size:.82rem;color:#0a2540}
+  .prinsip-box{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+  .prinsip-box span{background:#eef2f6;padding:2px 10px;border-radius:20px;font-size:.6rem;font-weight:600;color:#0a2540;text-transform:uppercase;letter-spacing:.5px}
+  .prinsip-box span.berkesadaran{background:#d4e6f1}
+  .prinsip-box span.bermakna{background:#fdebd0}
+  .prinsip-box span.menggembirakan{background:#d5f5e3}
+  .canvas-wrap{display:flex;justify-content:center;margin:6px 0;background:#fff;border-radius:10px;padding:4px;border:1px solid #e6edf4}
+  canvas{border-radius:8px;max-width:100%;height:auto;display:block;background:#fff}
+  .control-group{margin:6px 0 4px}
+  .control-group label{display:flex;justify-content:space-between;color:#1a3a5a;font-weight:500;font-size:.78rem}
+  .control-group label span{color:#0a2540;font-weight:700}
+  input[type='range']{width:100%;height:4px;-webkit-appearance:none;appearance:none;background:#d0dce8;border-radius:10px;outline:none}
+  input[type='range']::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;background:#0a2540;border-radius:50%;cursor:pointer}
+  input[type='range']::-moz-range-thumb{width:14px;height:14px;background:#0a2540;border-radius:50%;cursor:pointer;border:none}
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:6px;margin:6px 0}
+  .info-box{background:#fff;border-radius:8px;padding:6px 10px;text-align:center;border-left:4px solid #0a2540;box-shadow:0 2px 4px rgba(0,0,0,.04)}
+  .info-box .label{font-size:.6rem;color:#4a6a8a;text-transform:uppercase;letter-spacing:.5px}
+  .info-box .value{font-size:1.05rem;font-weight:700;color:#0a2540}
+  .btn-group{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0;justify-content:center}
+  .btn-mode{background:#f0f4f9;border:2px solid transparent;padding:3px 12px;border-radius:40px;color:#1a3a5a;font-weight:600;font-size:.78rem;cursor:pointer;transition:.2s}
+  .btn-mode:hover{background:#e2eaf2}
+  .btn-mode.active-mode{border-color:#0a2540;background:#0a2540;color:#fff}
+  .btn{background:#0a2540;border:none;padding:5px 16px;border-radius:40px;font-weight:700;color:#fff;font-size:.78rem;cursor:pointer;transition:.2s}
+  .btn:hover{background:#1a3a5a;transform:scale(1.02)}
+  .evaluation-box{background:#f0f7ff;border-radius:10px;padding:10px 14px;margin-top:8px;margin-bottom:8px;border:1px dashed #0a2540}
+  .evaluation-box .soal{color:#1a3a5a;font-size:.82rem;line-height:1.5}
+  .evaluation-box .answer-area{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}
+  .evaluation-box .answer-area input,.evaluation-box .answer-area select{background:#fff;border:1px solid #d0dce8;border-radius:30px;padding:3px 12px;color:#0a2540;font-size:.78rem;outline:none;width:78px}
+  .evaluation-box .answer-area select{width:auto;max-width:100%}
+  .feedback{margin-top:6px;font-weight:600;font-size:.78rem}
+  .feedback.correct{color:#0a7a3a}
+  .feedback.wrong{color:#b33}
+  .kesimpulan-box{background:#eaf2fa;border-radius:8px;padding:8px 12px;margin-top:6px;border-left:4px solid #f5b342}
+  .kesimpulan-box h4{color:#0a2540;font-size:.8rem}
+  .kesimpulan-box p{color:#1a3a5a;font-size:.78rem;line-height:1.5}
+  .cp-box{background:#eaf2fa;border-radius:8px;padding:8px 12px;margin-top:12px;border-left:4px solid #0a2540}
+  .cp-box h4{color:#0a2540;font-size:1rem;margin-bottom:2px}
+  .cp-box p{color:#1a3a5a;font-size:.78rem;line-height:1.5}
+  .dpl-box{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
+  .dpl-box span{background:#0a2540;color:#fff;padding:2px 8px;border-radius:20px;font-size:12px;font-weight:600}
+  .rumus-box{background:#f0f7ff;border-radius:8px;padding:8px 12px;border-left:4px solid #2980b9;margin:6px 0}
+  .rumus-box .label{font-size:.6rem;color:#4a6a8a;text-transform:uppercase;letter-spacing:.5px}
+  .rumus-box .isi{font-size:.8rem;font-weight:600;color:#0a2540;line-height:1.5}
+
+  .kuis-view{display:none}
+  .kuis-view.active{display:block}
+  .kuis-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #e6edf4}
+  .kuis-header h2{font-size:1.1rem;color:#0a2540}
+  .kuis-badge{background:#eaf2fa;color:#0a2540;padding:4px 14px;border-radius:20px;font-weight:700;font-size:.85rem;border:1px solid #d0dce8}
+  .kuis-timer{background:#fef9e7;color:#b8860b;padding:4px 16px;border-radius:20px;font-weight:700;font-size:1rem;border:1px solid #f5b342;font-variant-numeric:tabular-nums}
+  .kuis-timer.warning{color:#b33;border-color:#e57373;animation:pulseKuis 1s infinite}
+  @keyframes pulseKuis{0%,100%{opacity:1}50%{opacity:.55}}
+  .kuis-soal-card{background:#f9fbfd;border-radius:12px;padding:18px 20px;border-left:5px solid #0a2540;animation:fadeSlide .3s ease}
+  .kuis-nomor{font-weight:700;color:#4a6a8a;font-size:.85rem;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+  .kuis-pertanyaan{font-weight:600;font-size:1rem;color:#0a2540;line-height:1.6;margin-bottom:16px}
+  .kuis-opsi-list{display:flex;flex-direction:column;gap:8px}
+  .kuis-opsi{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#fff;border-radius:10px;border:2px solid #e6edf4;cursor:pointer;transition:.2s;color:#1a3a5a;font-size:.9rem}
+  .kuis-opsi:hover{border-color:#0a2540;background:#f9fbfd}
+  .kuis-opsi.selected{border-color:#0a2540;background:#eaf2fa;box-shadow:0 0 0 3px rgba(10,37,64,.08)}
+  .kuis-opsi .huruf{font-weight:700;color:#4f46e5;min-width:24px}
+  .kuis-opsi input[type='radio']{accent-color:#0a2540;width:18px;height:18px;cursor:pointer;flex-shrink:0}
+  .kuis-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid #e6edf4;flex-wrap:wrap}
+  .kuis-btn{background:#0a2540;color:#fff;border:none;padding:9px 22px;border-radius:40px;font-weight:600;font-size:.85rem;cursor:pointer;transition:.2s}
+  .kuis-btn:hover:not(:disabled){background:#1a3a5a;transform:scale(1.02)}
+  .kuis-btn:disabled{background:#b0c4d8;cursor:not-allowed;transform:none}
+  .kuis-btn-secondary{background:#eef2f6;color:#0a2540}
+  .kuis-btn-secondary:hover:not(:disabled){background:#dce4ec}
+  .kuis-btn-success{background:#059669;color:#fff}
+  .kuis-btn-success:hover:not(:disabled){background:#10b981}
+  .kuis-hasil{text-align:center;padding:12px 8px}
+  .kuis-skor-angka{font-size:3.5rem;font-weight:800;color:#0a2540;padding:8px 24px;background:#eaf2fa;border-radius:40px;display:inline-block;margin:10px 0;border:2px solid #0a2540}
+  .kuis-detail{background:#f9fbfd;padding:14px 18px;border-radius:12px;margin:12px auto;border:1px solid #e6edf4;max-width:400px;text-align:left;font-size:.9rem;color:#1a3a5a;line-height:1.7}
+  .kuis-status-send{margin-top:12px;padding:10px 16px;border-radius:10px;font-weight:600;font-size:.88rem;background:#fef9e7;color:#b8860b;border:1px solid #f5b342;display:inline-block}
+  .kuis-status-send.success{background:#d5f5e3;color:#0a7a3a;border-color:#4caf50}
+
+  @media (max-width:800px){
+    .slide-container{aspect-ratio:unset;min-height:100vh;border-radius:16px}
+    .slide-content{padding:12px 16px}
+    .slide-nav{padding:6px 14px;flex-wrap:wrap;gap:4px;justify-content:center}
+    .info-grid{grid-template-columns:1fr 1fr}
+    .siswa-badge{top:8px;right:8px;font-size:.7rem;padding:4px 10px}
+  }
+  @media (max-width:500px){
+    .info-grid{grid-template-columns:1fr}
+    .nav-btn{padding:3px 12px;font-size:.7rem}
+  }
+</style>
+</head>
+<body>
+<div class="bg-particles">
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<!-- LOGIN -->
+<div id="loginOverlay" class="login-overlay">
+  <div class="login-box">
+    <div class="login-icon">📐</div>
+    <h2>Selamat Datang</h2>
+    <p class="login-sub">Isi identitas dulu sebelum belajar</p>
+    <div class="login-form-group">
+      <label>Nama Lengkap</label>
+      <input type="text" id="loginNama" class="login-input" placeholder="Ketik nama Anda..." autocomplete="off" />
+    </div>
+    <div class="login-form-group">
+      <label>Kelas</label>
+      <select id="loginKelas" class="login-select">
+        <option value="">-- Pilih Kelas --</option>
+        <option value="10.A">10.A</option>
+        <option value="10.B">10.B</option>
+        <option value="10.C">10.C</option>
+        <option value="10.D">10.D</option>
+      </select>
+    </div>
+    <button class="login-btn" onclick="simpanLogin()">🚀 Mulai Belajar</button>
+    <p class="login-note">Semua jawaban dan hasil belajarmu akan tercatat otomatis untuk guru.</p>
+  </div>
+</div>
+
+<div class="slide-container">
+  <div class="siswa-badge" id="siswaBadge">
+    👤 <span id="siswaNamaDisplay">-</span><span class="sb-sep">•</span><span id="siswaKelasDisplay">-</span>
+  </div>
+
+  <div class="slide-content" id="slideContent">
+    <!-- SLIDE 0: SPLASH -->
+    <div class="slide" data-slide="0">
+      <div style="background:linear-gradient(135deg,#0a2540 0%,#1a5a7a 60%,#2980b9 100%);border-radius:16px;min-height:480px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px;position:relative;">
+        <div style="font-size:3rem">📐</div>
+        <h1 style="color:#fff;font-size:1.85rem;margin-top:8px;letter-spacing:.5px;line-height:1.2;">Sistem Pertidaksamaan<br />Linear Dua Variabel</h1>
+        <p style="color:#f5b342;font-size:1.15rem;font-weight:700;margin-top:10px;">Matematika Kelas X</p>
+        <p style="color:#cfe2f3;font-size:.85rem;margin-top:14px;max-width:460px;line-height:1.6;">Belajar menggambar daerah penyelesaian, menyusun model matematika, dan menyelesaikan sistem pertidaksamaan linear dua variabel.</p>
+        <button onclick="goToSlide(1)" style="margin-top:32px;background:#f5b342;border:none;padding:14px 44px;border-radius:60px;color:#0a2540;font-size:1.1rem;font-weight:700;cursor:pointer;transition:.3s;box-shadow:0 8px 24px rgba(0,0,0,.25);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">🚀 Mulai Belajar</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 1: PENDAHULUAN -->
+    <div class="slide" data-slide="1">
+      <div style="text-align:center;padding:8px 0 4px;">
+        <h1 style="font-size:1.45rem;color:#0a2540;margin:4px 0;">📐 Sistem Pertidaksamaan Linear Dua Variabel</h1>
+        <p style="color:#1a5a7a;font-size:.85rem;">Matematika Kelas X SMA</p>
+      </div>
+      <div class="cp-box">
+        <h4>🎯 Capaian Pembelajaran</h4>
+        <p><strong>Menjelaskan dan menentukan penyelesaian sistem pertidaksamaan linear dua variabel, serta menyusun model matematika dari masalah kontekstual.</strong></p>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 Dimensi Profil Lulusan (DPL)</div>
+        <div class="dpl-box">
+          <span>🧠 Penalaran Kritis</span><span>💡 Kreativitas</span><span>🤝 Kolaborasi</span><span>🚀 Kemandirian</span><span>💬 Komunikasi</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🗺️ Peta Materi</div>
+        <div style="display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin-top:6px;">
+          <span style="background:#f9fbfd;padding:3px 10px;border-radius:6px;border:1px solid #e6edf4;font-size:12px;">🧠 Asesmen Awal</span>
+          <span style="background:#f9fbfd;padding:3px 10px;border-radius:6px;border:1px solid #e6edf4;font-size:12px;">📏 PtLDV</span>
+          <span style="background:#f9fbfd;padding:3px 10px;border-radius:6px;border:1px solid #e6edf4;font-size:12px;">📐 SPtLDV</span>
+          <span style="background:#f9fbfd;padding:3px 10px;border-radius:6px;border:1px solid #e6edf4;font-size:12px;">🧩 Model Matematika</span>
+          <span style="background:#f9fbfd;padding:3px 10px;border-radius:6px;border:1px solid #e6edf4;font-size:12px;">📝 Kuis Akhir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: ASESMEN AWAL -->
+    <div class="slide" data-slide="2">
+      <div class="card">
+        <div class="card-title">🧠 Asesmen Awal – Seberapa Siap Kamu?</div>
+        <div class="card-sub">Jawab 4 pertanyaan berikut untuk mengetahui kesiapanmu!</div>
+      </div>
+      <div class="evaluation-box">
+        <div class="soal">1. Titik A(3, −2) terletak di kuadran ....</div>
+        <div class="answer-area">
+          <select class="soal-prasyarat" data-benar="IV">
+            <option value="">-- Pilih --</option>
+            <option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option>
+          </select>
+        </div>
+      </div>
+      <div class="evaluation-box">
+        <div class="soal">2. Titik (0, 0) disebut juga sebagai ....</div>
+        <div class="answer-area">
+          <select class="soal-prasyarat" data-benar="titik asal">
+            <option value="">-- Pilih --</option>
+            <option value="titik asal">titik asal</option><option value="titik puncak">titik puncak</option><option value="titik tengah">titik tengah</option>
+          </select>
+        </div>
+      </div>
+      <div class="evaluation-box">
+        <div class="soal">3. Garis 2x + 3y = 12 memotong sumbu Y di titik ....</div>
+        <div class="answer-area">
+          <select class="soal-prasyarat" data-benar="(0, 4)">
+            <option value="">-- Pilih --</option>
+            <option value="(0, 4)">(0, 4)</option><option value="(6, 0)">(6, 0)</option><option value="(0, 6)">(0, 6)</option><option value="(4, 0)">(4, 0)</option>
+          </select>
+        </div>
+      </div>
+      <div class="evaluation-box">
+        <div class="soal">4. Nilai 3x + 2y untuk x = 2 dan y = 3 adalah ....</div>
+        <div class="answer-area">
+          <select class="soal-prasyarat" data-benar="12">
+            <option value="">-- Pilih --</option>
+            <option value="10">10</option><option value="12">12</option><option value="13">13</option><option value="15">15</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="cekPrasyarat()">✅ Cek Kesiapan</button>
+      <span class="feedback" id="feedbackPrasyarat"></span>
+    </div>
+
+    <!-- SLIDE 3: MATERI PtLDV -->
+    <div class="slide" data-slide="3">
+      <div class="tujuan-box"><strong>🎯 Tujuan:</strong> Setelah slide ini, kamu mampu menentukan daerah penyelesaian pertidaksamaan linear dua variabel (PtLDV) pada bidang koordinat.</div>
+      <div class="prinsip-box"><span class="berkesadaran">Berkesadaran</span><span class="bermakna">Bermakna</span><span class="menggembirakan">Menggembirakan</span></div>
+      <div class="card">
+        <div class="card-title">📏 Pertidaksamaan Linear Dua Variabel (PtLDV)</div>
+        <div class="card-sub"><strong>PtLDV</strong> adalah pertidaksamaan yang memuat dua variabel berpangkat satu, misalnya 2x + 3y ≤ 12. Daerah penyelesaiannya adalah himpunan titik (x, y) yang memenuhi pertidaksamaan, digambarkan sebagai <em>daerah yang diarsir</em>.</div>
+        <div class="canvas-wrap"><canvas id="canvasPtLDV" width="600" height="320"></canvas></div>
+        <div class="btn-group" id="opBtns">
+          <button class="btn-mode active-mode" data-op="<=">≤</button>
+          <button class="btn-mode" data-op="≥">≥</button>
+          <button class="btn-mode" data-op="<">&lt;</button>
+          <button class="btn-mode" data-op=">">&gt;</button>
+        </div>
+        <div class="control-group"><label>Koefisien a (pada ax + by = c) <span id="aLabel">2</span></label><input type="range" id="aSlider" min="-6" max="6" value="2" step="1" /></div>
+        <div class="control-group"><label>Koefisien b <span id="bLabel">3</span></label><input type="range" id="bSlider" min="-6" max="6" value="3" step="1" /></div>
+        <div class="control-group"><label>Konstanta c <span id="cLabel">12</span></label><input type="range" id="cSlider" min="-15" max="15" value="12" step="1" /></div>
+        <div class="info-grid">
+          <div class="info-box"><div class="label">Garis</div><div class="value" id="infoGaris">2x + 3y = 12</div></div>
+          <div class="info-box" style="border-left-color:#8e44ad"><div class="label">Tanda</div><div class="value" id="infoTanda">≤</div></div>
+          <div class="info-box" style="border-left-color:#e67e22"><div class="label">Uji Titik</div><div class="value" id="infoUji">(0, 0) ✓</div></div>
+        </div>
+        <div class="kesimpulan-box"><h4>📌 Kesimpulan</h4><p id="kesimpulanPtLDV">Karena (0,0) memenuhi 2(0) + 3(0) ≤ 12, maka daerah penyelesaian terletak di sisi yang memuat titik asal O(0,0).</p></div>
+        <div class="rumus-box">
+          <div class="label">Langkah Menggambar Daerah Penyelesaian</div>
+          <div class="isi">
+            1. Gambar garis ax + by = c (garis <strong>penuh</strong> untuk ≤ / ≥, <strong>putus-putus</strong> untuk &lt; / &gt;).<br />
+            2. Ambil satu titik uji (biasanya O(0,0)).<br />
+            3. Substitusikan ke pertidaksamaan. Jika <strong>benar</strong>, arsir sisi yang memuat titik uji. Jika <strong>salah</strong>, arsir sisi sebaliknya.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: SOAL PtLDV -->
+    <div class="slide" data-slide="4">
+      <div class="card">
+        <div class="card-title">🧠 Soal – Pertidaksamaan Linear Dua Variabel</div>
+        <div class="card-sub">Kerjakan 2 soal berikut! Jawabanmu akan langsung tercatat untuk guru.</div>
+      </div>
+      <div class="evaluation-box">
+        <div class="soal">1. Titik berikut yang memenuhi pertidaksamaan 2x + 3y ≤ 12 adalah ....</div>
+        <div class="answer-area">
+          <select class="soal-latihan" data-benar="(4, 1)" data-kategori="Latihan PtLDV" data-no="1">
+            <option value="">-- Pilih titik --</option>
+            <option value="(4, 1)">(4, 1)</option><option value="(3, 3)">(3, 3)</option><option value="(2, 3)">(2, 3)</option><option value="(1, 4)">(1, 4)</option><option value="(5, 1)">(5, 1)</option>
+          </select>
+        </div>
+      </div>
+      <div class="evaluation-box">
+        <div class="soal">2. Daerah penyelesaian pertidaksamaan 3x + 4y ≤ 12 adalah daerah yang ....</div>
+        <div class="answer-area">
+          <select class="soal-latihan" data-benar="memuat titik asal O(0,0)" data-kategori="Latihan PtLDV" data-no="2">
+            <option value="">-- Pilih jawaban --</option>
+            <option value="memuat titik asal O(0,0)">Memuat titik asal O(0,0)</option>
+            <option value="tidak memuat titik asal O(0,0)">Tidak memuat titik asal O(0,0)</option>
+            <option value="terletak tepat pada garis 3x + 4y = 12">Terletak tepat pada garis</option>
+            <option value="terletak di atas garis 3x + 4y = 12">Terletak di atas garis</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="cekLatihan('soal-latihan','feedbackLatihan')">✅ Cek Jawaban</button>
+      <span class="feedback" id="feedbackLatihan"></span>
+    </div>
+
+    <!-- SLIDE 5: MATERI SPtLDV -->
+    <div class="slide" data-slide="5">
+      <div class="tujuan-box"><strong>🎯 Tujuan:</strong> Setelah slide ini, kamu mampu menentukan himpunan penyelesaian dari sistem pertidaksamaan linear dua variabel (irisan dua atau lebih daerah penyelesaian).</div>
+      <div class="prinsip-box"><span class="berkesadaran">Berkesadaran</span><span class="bermakna">Bermakna</span><span class="menggembirakan">Menggembirakan</span></div>
+      <div class="card">
+        <div class="card-title">📐 Sistem Pertidaksamaan Linear Dua Variabel (SPtLDV)</div>
+        <div class="card-sub"><strong>SPtLDV</strong> adalah kumpulan dua atau lebih PtLDV. Penyelesaiannya adalah <strong>irisan</strong> (daerah milik bersama) dari semua daerah penyelesaian masing-masing pertidaksamaan.</div>
+        <div class="canvas-wrap"><canvas id="canvasSPtLDV" width="600" height="320"></canvas></div>
+        <div class="btn-group">
+          <button class="btn-mode active-mode" data-sys="0">Sistem 1</button>
+          <button class="btn-mode" data-sys="1">Sistem 2</button>
+          <button class="btn-mode" data-sys="2">Sistem 3</button>
+        </div>
+        <div class="info-grid">
+          <div class="info-box"><div class="label">Pertidaksamaan 1</div><div class="value" id="infoS1">x + y ≤ 6</div></div>
+          <div class="info-box" style="border-left-color:#8e44ad"><div class="label">Pertidaksamaan 2</div><div class="value" id="infoS2">x + 2y ≤ 8</div></div>
+          <div class="info-box" style="border-left-color:#16a085"><div class="label">Syarat</div><div class="value" id="infoS3">x ≥ 0, y ≥ 0</div></div>
+        </div>
+        <div class="kesimpulan-box"><h4>📌 Kesimpulan</h4><p id="kesimpulanSPtLDV">Daerah penyelesaian SPtLDV adalah irisan dari semua daerah penyelesaian pertidaksamaannya. Titik-titik sudut daerah irisan disebut <strong>titik pojok</strong>.</p></div>
+        <div class="rumus-box">
+          <div class="label">Cara Menentukan Himpunan Penyelesaian SPtLDV</div>
+          <div class="isi">
+            1. Gambar daerah penyelesaian masing-masing pertidaksamaan.<br />
+            2. Tentukan <strong>irisan</strong> (daerah bertumpuk) dari semua daerah.<br />
+            3. Tentukan <strong>titik pojok</strong> (titik potong garis-garis pembatas yang berada di daerah irisan).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: SOAL SPtLDV -->
+    <div class="slide" data-slide="6">
+      <div class="card">
+        <div class="card-title">🧠 Soal – Sistem Pertidaksamaan Linear Dua Variabel</div>
+        <div class="card-sub">Kerjakan 3 soal berikut! Jawabanmu akan langsung tercatat untuk guru.</div>
+      </div>
+      <div class="evaluation-box">
+        <div class="soal">1. Titik yang memenuhi sistem x + y ≤ 6; 2x + y ≥ 8; x ≥ 0; y ≥ 0 adalah ....</div>
+        <div class="answer-area">
+          <select class="soal-latihan" data-benar="(3, 3)" data-kategori="Latihan SPtLDV" data-no="1">
+            <option value="">-- Pilih titik --</option>
+            <option value="(2, 2)">(2, 2)</option><option value="(3, 3)">(3, 3)</option><option value="(5, 2)">(5, 2)</option><option value="(1, 5)">(1, 5)</option><option value="(4, 1)">(4, 1)</option>
+          </select>
+        </div>
+      </div>
+      <div class="evaluation-box">
+        <div class="soal">2. Toko kue: Kue A perlu 200 g tepung &amp; 100 g gula; Kue B perlu 100 g tepung &amp; 150 g gula. Tersedia 4.000 g tepung &amp; 3.000 g gula. Model matematika yang tepat adalah ....</div>
+        <div class="answer-area">
+          <select class="soal-latihan" data-benar="2x + y ≤ 40; 2x + 3y ≤ 60; x ≥ 0; y ≥ 0" data-kategori="Latihan SPtLDV" data-no="2">
+            <option value="">-- Pilih model --</option>
+            <option value="2x + y ≤ 40; 2x + 3y ≤ 60; x ≥ 0; y ≥ 0">2x + y ≤ 40; 2x + 3y ≤ 60; x, y ≥ 0</option>
+            <option value="2x + y ≥ 40; 2x + 3y ≥ 60; x ≥ 0; y ≥ 0">2x + y ≥ 40; 2x + 3y ≥ 60; x, y ≥ 0</option>
+            <option value="x + 2y ≤ 40; 3x + 2y ≤ 60; x ≥ 0; y ≥ 0">x + 2y ≤ 40; 3x + 2y ≤ 60; x, y ≥ 0</option>
+            <option value="2x + y ≤ 60; 2x + 3y ≤ 40; x ≥ 0; y ≥ 0">2x + y ≤ 60; 2x + 3y ≤ 40; x, y ≥ 0</option>
+          </select>
+        </div>
+      </div>
+      <div class="evaluation-box">
+        <div class="soal">3. Titik pojok dari sistem x + y ≤ 4; x + 3y ≤ 6; x ≥ 0; y ≥ 0 adalah ....</div>
+        <div class="answer-area">
+          <select class="soal-latihan" data-benar="(3, 1)" data-kategori="Latihan SPtLDV" data-no="3">
+            <option value="">-- Pilih titik --</option>
+            <option value="(3, 1)">(3, 1)</option><option value="(1, 3)">(1, 3)</option><option value="(2, 2)">(2, 2)</option><option value="(4, 1)">(4, 1)</option><option value="(4, 0)">(4, 0)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="cekLatihan('soal-latihan','feedbackLatihan2')">✅ Cek Jawaban</button>
+      <span class="feedback" id="feedbackLatihan2"></span>
+    </div>
+
+    <!-- SLIDE 7: PENERAPAN -->
+    <div class="slide" data-slide="7">
+      <div class="tujuan-box"><strong>🎯 Tujuan:</strong> Melihat bagaimana SPtLDV dipakai untuk memodelkan masalah nyata dan menentukan solusi optimal.</div>
+      <div class="card">
+        <div class="card-title">🧩 Penerapan: Model Matematika &amp; Daerah Fisibel</div>
+        <div class="card-sub">Ketika menghadapi soal cerita, kita ubah dulu ke bentuk SPtLDV. Daerah penyelesaiannya disebut <strong>daerah fisibel</strong>. Titik-titik pojoknya dapat diuji untuk mencari nilai optimum.</div>
+        <div class="canvas-wrap"><canvas id="canvasMotif" width="600" height="320"></canvas></div>
+        <div class="control-group">
+          <label>Tampilkan garis fungsi objektif f = 3x + 2y <span id="motifLabel">Aktif</span></label>
+          <input type="range" id="jumlahMotif" min="0" max="1" value="1" step="1" />
+        </div>
+        <div class="kesimpulan-box">
+          <h4>📌 Kesimpulan</h4>
+          <p>Daerah fisibel dibatasi: <strong>x + y ≤ 6</strong>, <strong>2x + y ≤ 8</strong>, <strong>x ≥ 0, y ≥ 0</strong>. Titik pojok: O(0,0), A(4,0), B(2,4), C(0,6). Nilai optimum fungsi objektif selalu terjadi di salah satu titik pojok.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: KUIS -->
+    <div class="slide" data-slide="8">
+      <div class="card">
+        <div class="card-title">📝 Kuis Akhir – Sistem Pertidaksamaan Linear Dua Variabel</div>
+        <div class="card-sub">Kerjakan 10 soal berikut. Jawaban dan skormu akan otomatis terkirim ke guru.</div>
+      </div>
+      <div id="kuisSoal" class="kuis-view active">
+        <div class="kuis-header">
+          <h2>📝 Soal SPtLDV</h2>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+            <span class="kuis-badge" id="kuisProgress">1 / 10</span>
+            <span class="kuis-timer" id="kuisTimer">10:00</span>
+          </div>
+        </div>
+        <div id="kuisSoalContainer"></div>
+        <div class="kuis-nav">
+          <button class="kuis-btn kuis-btn-secondary" id="kuisPrev" onclick="kuisPrev()" disabled>◀ Sebelumnya</button>
+          <button class="kuis-btn kuis-btn-success" onclick="selesaikanKuis()">📨 Kirim Jawaban</button>
+          <button class="kuis-btn" id="kuisNext" onclick="kuisNext()">Selanjutnya ▶</button>
+        </div>
+      </div>
+      <div id="kuisHasil" class="kuis-view">
+        <div class="kuis-hasil">
+          <div style="font-size:2rem">🏆</div>
+          <h3 style="color:#0a2540;margin:4px 0">Hasil Kuismu</h3>
+          <div class="kuis-skor-angka" id="kuisSkorAngka">0</div>
+          <p style="color:#4a6a8a;font-size:.9rem;">Nilai Akhir (Skala 0 – 100)</p>
+          <div class="kuis-detail">
+            <p><strong>Nama:</strong> <span id="kuisResultNama">-</span></p>
+            <p><strong>Kelas:</strong> <span id="kuisResultKelas">-</span></p>
+            <p><strong>Benar:</strong> <span id="kuisResultBenar">0</span> dari 10 soal</p>
+          </div>
+          <div class="kuis-status-send" id="kuisStatusSend">⏳ Mengirim nilai ...</div>
+          <div style="margin-top:14px;"><button class="btn" onclick="resetKuisView()">🔄 Kerjakan Ulang</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: PENGEMBANG -->
+    <div class="slide" data-slide="9">
+      <div class="card" style="text-align:center">
+        <h2 style="font-size:1.6rem;color:#0a2540;font-weight:700">PENGEMBANG</h2>
+        <hr style="width:60px;border:2px solid #f5b342;margin:10px auto" />
+        <div style="margin-top:16px;line-height:2">
+          <p><strong style="font-size:1.1rem">Aan Junaidi, S.Si., Gr.</strong></p>
+          <p style="color:#1a5a7a">SMA Unggul Islam Al-Fahd <br />Banyuasin, Sumatera Selatan</p>
+          <p><span style="font-weight:600;margin-top:8px">Email:</span> aanjunaidi46@guru.sma.belajar.id</p>
+        </div>
+        <div style="margin-top:16px">
+          <a href="https://www.instagram.com/aanjunaidi1414/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:radial-gradient(circle at 30% 110%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285aeb 90%);color:#fff;padding:8px 20px;border-radius:40px;text-decoration:none;font-weight:600;font-size:.9rem;transition:.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">📷 @aanjunaidi1414</a>
+        </div>
+        <div style="font-size:.75rem;color:#7a9ab5;border-top:1px solid #e6edf4;padding-top:12px;margin-top:24px;">
+          <p>Konten ini disusun untuk lomba PNFI 2026</p>
+        </div>
+        <button class="btn" onclick="goToSlide(0)" style="margin-top:12px">🏠 Awal</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-nav">
+    <button class="nav-btn nav-btn-secondary" id="prevBtn" onclick="prevSlide()">← Sebelumnya</button>
+    <div class="indicator">Slide <span id="slideIndex">1</span> dari <span id="slideTotal">10</span></div>
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Selanjutnya →</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   KONFIGURASI SPREADSHEET
+   ============================================================ */
+const SPREADSHEET_URL =
+  'https://script.google.com/macros/s/AKfycbymWgs2WjnOtRfCI93gPja2O-SA8RGCxI_ubmh7-THlw1ujlL6Fd_pulnwo8Xbd9ZZYig/exec';
+
+/* ============================================================
+   IDENTITAS SISWA
+   ============================================================ */
+let siswaNama = '';
+let siswaKelas = '';
+
+function simpanLogin() {
+  const nama = document.getElementById('loginNama').value.trim();
+  const kelas = document.getElementById('loginKelas').value;
+  if (!nama || !kelas) { alert('Lengkapi Nama dan Kelas dulu ya!'); return; }
+  siswaNama = nama;
+  siswaKelas = kelas;
+  document.getElementById('siswaNamaDisplay').textContent = nama;
+  document.getElementById('siswaKelasDisplay').textContent = kelas;
+  document.getElementById('siswaBadge').classList.add('active');
+  document.getElementById('loginOverlay').classList.add('hidden');
+  kirimKeSpreadsheet({
+    tipe: 'KEHADIRAN', nama: siswaNama, kelas: siswaKelas,
+    kategori: 'Login', soal_no: '-', soal: 'Masuk modul',
+    jawaban: '-', jawaban_benar: '-', status: 'Hadir'
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const loginInput = document.getElementById('loginNama');
+  if (loginInput) loginInput.addEventListener('keydown', e => { if (e.key === 'Enter') simpanLogin(); });
+});
+
+/* ============================================================
+   KIRIM KE SPREADSHEET
+   ============================================================ */
+function kirimKeSpreadsheet(payload) {
+  const data = Object.assign({
+    nama: siswaNama, kelas: siswaKelas,
+    timestamp: new Date().toLocaleString('id-ID', { hour12: false })
+  }, payload);
+  const formBody = Object.keys(data)
+    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k])).join('&');
+  return fetch(SPREADSHEET_URL, {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: formBody
+  }).catch(err => console.warn('Kirim gagal:', err));
+}
+
+/* ============================================================
+   NAVIGASI SLIDE
+   ============================================================ */
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+document.getElementById('slideTotal').textContent = totalSlides;
+let kuisTimerStarted = false;
+
+function goToSlide(index) {
+  if (index < 0 || index >= totalSlides) return;
+  slides.forEach((s, i) => s.classList.toggle('active', i === index));
+  currentSlide = index;
+  document.getElementById('slideIndex').textContent = index + 1;
+  document.getElementById('prevBtn').disabled = index === 0;
+  document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+  document.getElementById('slideContent').scrollTop = 0;
+  if (index === 8 && !kuisTimerStarted) {
+    kuisTimerStarted = true;
+    mulaiTimerKuis();
+  }
+}
+function nextSlide() { if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1); }
+function prevSlide() { if (currentSlide > 0) goToSlide(currentSlide - 1); }
+document.addEventListener('keydown', function (e) {
+  const tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'select' || tag === 'textarea') return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); prevSlide(); }
+});
+
+/* ============================================================
+   UTILITAS GAMBAR
+   ============================================================ */
+const W = 600, H = 320, U = 20;
+function toS(x, y) { return { x: W / 2 + x * U, y: H / 2 - y * U }; }
+
+function drawKisi(ctx) {
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = '#e6eef6'; ctx.lineWidth = 1;
+  for (let x = (W / 2) % U; x <= W; x += U) { ctx.beginPath(); ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, H); ctx.stroke(); }
+  for (let y = (H / 2) % U; y <= H; y += U) { ctx.beginPath(); ctx.moveTo(0, y + 0.5); ctx.lineTo(W, y + 0.5); ctx.stroke(); }
+  ctx.strokeStyle = '#9db4c9'; ctx.lineWidth = 1.8;
+  ctx.beginPath(); ctx.moveTo(0, H / 2); ctx.lineTo(W, H / 2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W / 2, H); ctx.lineTo(W / 2, 0); ctx.stroke();
+  ctx.fillStyle = '#9db4c9';
+  ctx.beginPath(); ctx.moveTo(W, H / 2); ctx.lineTo(W - 10, H / 2 - 5); ctx.lineTo(W - 10, H / 2 + 5); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(W / 2, 0); ctx.lineTo(W / 2 - 5, 10); ctx.lineTo(W / 2 + 5, 10); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = '#7a9ab5'; ctx.font = 'bold 12px Segoe UI';
+  ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
+  ctx.fillText('x', W - 16, H / 2 - 8);
+  ctx.textBaseline = 'top'; ctx.fillText('y', W / 2 + 8, 6);
+  ctx.fillText('O', W / 2 + 7, H / 2 + 5);
+  ctx.fillStyle = '#b3c5d6'; ctx.font = '10px Segoe UI';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  for (let i = -15; i <= 15; i += 5) {
+    if (i === 0) continue;
+    const p = toS(i, 0);
+    if (p.x < 14 || p.x > W - 14) continue;
+    ctx.fillText(i, p.x, p.y + 4);
+  }
+  ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+  for (let j = -5; j <= 5; j += 5) {
+    if (j === 0) continue;
+    ctx.fillText(j, toS(0, j).x - 5, toS(0, j).y);
+  }
+}
+
+function gambarTitik(ctx, x, y, label, color) {
+  const p = toS(x, y);
+  ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, 2 * Math.PI);
+  ctx.fillStyle = color; ctx.fill();
+  ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.5; ctx.stroke();
+  ctx.fillStyle = color; ctx.font = 'bold 13px Segoe UI';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+  ctx.fillText(label, p.x, p.y - 8);
+}
+
+function evalIneq(lhs, rhs, op) {
+  if (op === '<=') return lhs <= rhs;
+  if (op === '>=') return lhs >= rhs;
+  if (op === '<')  return lhs <  rhs;
+  if (op === '>')  return lhs >  rhs;
+  return false;
+}
+
+function drawLine(ctx, a, b, c, color, dashed) {
+  let p1, p2;
+  if (Math.abs(b) > 0.001) {
+    p1 = { x: -15, y: (c - a * -15) / b };
+    p2 = { x:  15, y: (c - a *  15) / b };
+  } else {
+    if (Math.abs(a) < 0.001) return;
+    p1 = { x: c / a, y: -8 };
+    p2 = { x: c / a, y:  8 };
+  }
+  const s1 = toS(p1.x, p1.y), s2 = toS(p2.x, p2.y);
+  ctx.save();
+  ctx.strokeStyle = color; ctx.lineWidth = 2.5;
+  if (dashed) ctx.setLineDash([8, 5]);
+  ctx.beginPath(); ctx.moveTo(s1.x, s1.y); ctx.lineTo(s2.x, s2.y); ctx.stroke();
+  ctx.restore();
+}
+
+function shadeHalfPlane(ctx, a, b, c, op, fillColor) {
+  const denom = a * a + b * b;
+  if (denom < 0.001) return;
+
+  // Titik uji
+  let tx = 0, ty = 0;
+  if (Math.abs(a * 0 + b * 0 - c) < 0.001) {
+    if (Math.abs(a * 1 + b * 0 - c) > 0.001) { tx = 1; ty = 0; }
+    else { tx = 0; ty = 1; }
+  }
+  const testVal = a * tx + b * ty;
+  const satisfies = evalIneq(testVal, c, op);
+  const fTest = testVal - c;
+  let sign = satisfies ? Math.sign(fTest) : -Math.sign(fTest);
+  if (sign === 0) sign = 1;
+
+  // Titik pada garis
+  const p0 = { x: a * c / denom, y: b * c / denom };
+  const len = Math.sqrt(denom);
+  const nx = a / len, ny = b / len;   // arah normal
+  const dx = -ny, dy = nx;             // arah sejajar garis
+
+  const L = 80, D = 80;
+  const P1 = { x: p0.x - L * dx, y: p0.y - L * dy };
+  const P2 = { x: p0.x + L * dx, y: p0.y + L * dy };
+  const P3 = { x: P2.x + sign * D * nx, y: P2.y + sign * D * ny };
+  const P4 = { x: P1.x + sign * D * nx, y: P1.y + sign * D * ny };
+
+  const s1 = toS(P1.x, P1.y);
+  const s2 = toS(P2.x, P2.y);
+  const s3 = toS(P3.x, P3.y);
+  const s4 = toS(P4.x, P4.y);
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(s1.x, s1.y);
+  ctx.lineTo(s2.x, s2.y);
+  ctx.lineTo(s3.x, s3.y);
+  ctx.lineTo(s4.x, s4.y);
+  ctx.closePath();
+  ctx.fillStyle = fillColor;
+  ctx.fill();
+  ctx.restore();
+}
+
+/* ============================================================
+   ASESMEN AWAL
+   ============================================================ */
+function cekPrasyarat() {
+  const selects = document.querySelectorAll('.soal-prasyarat');
+  let benar = 0;
+  const total = selects.length;
+  selects.forEach((sel, i) => {
+    const isBenar = sel.value === sel.dataset.benar;
+    if (isBenar) benar++;
+    const teksSoal = sel.closest('.evaluation-box').querySelector('.soal').textContent.trim();
+    kirimKeSpreadsheet({
+      tipe: 'RESPON', kategori: 'Asesmen Awal', soal_no: i + 1,
+      soal: teksSoal, jawaban: sel.value || '(kosong)',
+      jawaban_benar: sel.dataset.benar,
+      status: isBenar ? 'Benar' : 'Salah'
+    });
+  });
+  const fb = document.getElementById('feedbackPrasyarat');
+  if (benar === total) { fb.textContent = '✅ Luar biasa! Kamu sudah siap. Nilai: ' + benar + '/' + total; fb.className = 'feedback correct'; }
+  else if (benar >= total - 1) { fb.textContent = '✅ Bagus! Hampir sempurna. Nilai: ' + benar + '/' + total; fb.className = 'feedback correct'; }
+  else if (benar >= Math.ceil(total / 2)) { fb.textContent = '⚠️ Cukup baik. Nilai: ' + benar + '/' + total + '. Perlu review.'; fb.className = 'feedback wrong'; }
+  else { fb.textContent = '❌ Masih perlu belajar lagi. Nilai: ' + benar + '/' + total; fb.className = 'feedback wrong'; }
+}
+
+/* ============================================================
+   SIMULATOR PtLDV (SLIDE 3)
+   ============================================================ */
+const canvasP = document.getElementById('canvasPtLDV');
+const ctxP = canvasP.getContext('2d');
+const aSlider = document.getElementById('aSlider');
+const bSlider = document.getElementById('bSlider');
+const cSlider = document.getElementById('cSlider');
+let opPtLDV = '<=';
+
+function drawPtLDV() {
+  drawKisi(ctxP);
+  let a = parseInt(aSlider.value), b = parseInt(bSlider.value), c = parseInt(cSlider.value);
+  if (a === 0 && b === 0) a = 1;
+
+  shadeHalfPlane(ctxP, a, b, c, opPtLDV, 'rgba(41,128,185,0.22)');
+  const dashed = (opPtLDV === '<' || opPtLDV === '>');
+  drawLine(ctxP, a, b, c, '#0a2540', dashed);
+
+  document.getElementById('aLabel').textContent = a;
+  document.getElementById('bLabel').textContent = b;
+  document.getElementById('cLabel').textContent = c;
+
+  const tanda1 = b >= 0 ? ' + ' : ' − ';
+  const tanda2 = c >= 0 ? ' = ' : ' = −';
+  document.getElementById('infoGaris').textContent = a + 'x' + tanda1 + Math.abs(b) + 'y' + tanda2 + Math.abs(c);
+  document.getElementById('infoTanda').textContent = opPtLDV;
+
+  let tx = 0, ty = 0;
+  if (Math.abs(a * 0 + b * 0 - c) < 0.001) { tx = 1; ty = 0; }
+  const val = a * tx + b * ty;
+  const ok = evalIneq(val, c, opPtLDV);
+  document.getElementById('infoUji').textContent = '(' + tx + ', ' + ty + ') ' + (ok ? '✓' : '✗');
+
+  document.getElementById('kesimpulanPtLDV').innerHTML =
+    'Titik uji (' + tx + ', ' + ty + ') → ' + a + '(' + tx + ')' +
+    (b >= 0 ? ' + ' : ' − ') + Math.abs(b) + '(' + ty + ') = ' + val +
+    '. Karena ' + val + ' ' + opPtLDV + ' ' + c + ' bernilai <strong>' +
+    (ok ? 'BENAR' : 'SALAH') + '</strong>, maka daerah penyelesaian diarsir pada sisi yang ' +
+    (ok ? 'memuat' : 'tidak memuat') + ' titik uji.';
+}
+
+[aSlider, bSlider, cSlider].forEach(s => s.addEventListener('input', drawPtLDV));
+document.querySelectorAll('#opBtns .btn-mode').forEach(btn => {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('#opBtns .btn-mode').forEach(b => b.classList.remove('active-mode'));
+    this.classList.add('active-mode');
+    opPtLDV = this.dataset.op;
+    drawPtLDV();
+  });
+});
+
+/* ============================================================
+   SIMULATOR SPtLDV (SLIDE 5)
+   ============================================================ */
+const canvasS = document.getElementById('canvasSPtLDV');
+const ctxS = canvasS.getContext('2d');
+const systems = [
+  { s1: { a:1, b:1, c:6, op:'<=' }, s2: { a:1, b:2, c:8, op:'<=' }, l1:'x + y ≤ 6',  l2:'x + 2y ≤ 8' },
+  { s1: { a:1, b:1, c:6, op:'<=' }, s2: { a:1, b:2, c:8, op:'>=' }, l1:'x + y ≤ 6',  l2:'x + 2y ≥ 8' },
+  { s1: { a:2, b:1, c:8, op:'<=' }, s2: { a:1, b:2, c:8, op:'<=' }, l1:'2x + y ≤ 8', l2:'x + 2y ≤ 8' }
+];
+let sysIndex = 0;
+
+function satisfiesTol(v, c, op, tol) {
+  tol = tol || 0.3;
+  if (op === '<=' || op === '<') return v <= c + tol;
+  return v >= c - tol;
+}
+
+function getCorners(sys) {
+  const { s1, s2 } = sys;
+  const pts = [];
+  const det = s1.a * s2.b - s2.a * s1.b;
+  if (Math.abs(det) > 0.001) {
+    const x = (s1.c * s2.b - s2.c * s1.b) / det;
+    const y = (s1.a * s2.c - s2.a * s1.c) / det;
+    pts.push({ x, y });
+  }
+  [s1, s2].forEach(s => {
+    if (Math.abs(s.b) > 0.001) pts.push({ x: s.c / s.a, y: 0 });
+    if (Math.abs(s.a) > 0.001) pts.push({ x: 0, y: s.c / s.b });
+  });
+  pts.push({ x: 0, y: 0 });
+
+  return pts.filter(p => {
+    if (p.x < -0.3 || p.y < -0.3) return false;
+    if (p.x > 18 || p.y > 18) return false;
+    const v1 = s1.a * p.x + s1.b * p.y;
+    const v2 = s2.a * p.x + s2.b * p.y;
+    return satisfiesTol(v1, s1.c, s1.op) && satisfiesTol(v2, s2.c, s2.op);
+  });
+}
+
+function drawSPtLDV() {
+  drawKisi(ctxS);
+  const sys = systems[sysIndex];
+
+  shadeHalfPlane(ctxS, sys.s1.a, sys.s1.b, sys.s1.c, sys.s1.op, 'rgba(41,128,185,0.22)');
+  shadeHalfPlane(ctxS, sys.s2.a, sys.s2.b, sys.s2.c, sys.s2.op, 'rgba(142,68,173,0.22)');
+
+  drawLine(ctxS, sys.s1.a, sys.s1.b, sys.s1.c, '#2980b9', sys.s1.op === '<' || sys.s1.op === '>');
+  drawLine(ctxS, sys.s2.a, sys.s2.b, sys.s2.c, '#8e44ad', sys.s2.op === '<' || sys.s2.op === '>');
+
+  const corners = getCorners(sys);
+  corners.forEach((p, i) => {
+    gambarTitik(ctxS, p.x, p.y, 'P' + (i + 1), '#e67e22');
+  });
+
+  document.getElementById('infoS1').textContent = sys.l1;
+  document.getElementById('infoS2').textContent = sys.l2;
+  document.getElementById('infoS3').textContent = 'x ≥ 0, y ≥ 0';
+
+  const cornerList = corners.map(p => '(' + p.x.toFixed(1) + ', ' + p.y.toFixed(1) + ')').join(', ');
+  document.getElementById('kesimpulanSPtLDV').innerHTML =
+    'Daerah penyelesaian adalah irisan dari kedua daerah. Titik pojok yang mungkin: <strong>' +
+    (cornerList || 'tidak ada') + '</strong>.';
+}
+
+document.querySelectorAll('.btn-group [data-sys]').forEach(btn => {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('.btn-group [data-sys]').forEach(b => b.classList.remove('active-mode'));
+    this.classList.add('active-mode');
+    sysIndex = parseInt(this.dataset.sys);
+    drawSPtLDV();
+  });
+});
+
+/* ============================================================
+   SIMULATOR PENERAPAN (SLIDE 7)
+   ============================================================ */
+const canvasM = document.getElementById('canvasMotif');
+const ctxM = canvasM.getContext('2d');
+const jumlahMotif = document.getElementById('jumlahMotif');
+
+function drawMotif() {
+  drawKisi(ctxM);
+  const showMax = jumlahMotif.value === '1';
+
+  // Daerah fisibel: x + y ≤ 6, 2x + y ≤ 8, x ≥ 0, y ≥ 0
+  // Titik pojok: (0,0), (4,0), (2,4), (0,6)
+  const poly = [
+    { x: 0, y: 0 }, { x: 4, y: 0 }, { x: 2, y: 4 }, { x: 0, y: 6 }
+  ];
+
+  // Arsir poligon
+  ctxM.save();
+  ctxM.beginPath();
+  poly.forEach((p, i) => {
+    const s = toS(p.x, p.y);
+    if (i === 0) ctxM.moveTo(s.x, s.y); else ctxM.lineTo(s.x, s.y);
+  });
+  ctxM.closePath();
+  ctxM.fillStyle = 'rgba(41,128,185,0.22)';
+  ctxM.fill();
+  ctxM.strokeStyle = '#0a2540';
+  ctxM.lineWidth = 2.5;
+  ctxM.stroke();
+  ctxM.restore();
+
+  // Gambar garis pembatas
+  drawLine(ctxM, 1, 1, 6, '#2980b9', false); // x + y = 6
+  drawLine(ctxM, 2, 1, 8, '#8e44ad', false); // 2x + y = 8
+
+  // Tandai titik pojok
+  const labels = ['O', 'A', 'B', 'C'];
+  poly.forEach((p, i) => {
+    gambarTitik(ctxM, p.x, p.y, labels[i], '#e67e22');
+  });
+
+  // Garis fungsi objektif f = 3x + 2y = k
+  if (showMax) {
+    [6, 12, 18].forEach(k => {
+      ctxM.save();
+      ctxM.strokeStyle = 'rgba(230,126,34,0.55)';
+      ctxM.lineWidth = 1.6;
+      ctxM.setLineDash([6, 4]);
+      const s1 = toS(0, k / 2);
+      const s2 = toS(k / 3, 0);
+      ctxM.beginPath();
+      ctxM.moveTo(s1.x, s1.y);
+      ctxM.lineTo(s2.x, s2.y);
+      ctxM.stroke();
+      ctxM.restore();
+    });
+  }
+
+  // Label
+  ctxM.fillStyle = '#0a2540';
+  ctxM.font = 'bold 12px Segoe UI';
+  ctxM.textAlign = 'left';
+  ctxM.textBaseline = 'top';
+  ctxM.fillText('Daerah fisibel: x + y ≤ 6 ; 2x + y ≤ 8 ; x, y ≥ 0', 10, 10);
+  ctxM.fillStyle = '#e67e22';
+  ctxM.textBaseline = 'bottom';
+  ctxM.fillText(
+    showMax
+      ? 'Titik pojok: O(0,0), A(4,0), B(2,4), C(0,6) — garis putus = kontur 3x + 2y'
+      : 'Titik pojok: O(0,0), A(4,0), B(2,4), C(0,6)',
+    10, H - 10
+  );
+}
+
+jumlahMotif.addEventListener('input', function () {
+  document.getElementById('motifLabel').textContent = this.value === '1' ? 'Aktif' : 'Nonaktif';
+  drawMotif();
+});
+
+/* ============================================================
+   LATIHAN (KIRIM KE SPREADSHEET)
+   ============================================================ */
+function cekLatihan(className, fbId) {
+  const selects = document.querySelectorAll('.' + className);
+  let benar = 0, total = 0;
+  selects.forEach((sel, i) => {
+    // Hanya proses select yang visible (dalam slide aktif)
+    if (!sel.offsetParent) return;
+    if (!sel.value) return;
+    total++;
+    const isBenar = sel.value === sel.dataset.benar;
+    if (isBenar) benar++;
+
+    const teksSoal = sel.closest('.evaluation-box').querySelector('.soal').textContent.trim();
+    kirimKeSpreadsheet({
+      tipe: 'RESPON',
+      kategori: sel.dataset.kategori || 'Latihan',
+      soal_no: sel.dataset.no || (i + 1),
+      soal: teksSoal,
+      jawaban: sel.value,
+      jawaban_benar: sel.dataset.benar,
+      status: isBenar ? 'Benar' : 'Salah'
+    });
+  });
+
+  const fb = document.getElementById(fbId);
+  if (total === 0) { fb.textContent = '⚠️ Isi jawaban dulu ya!'; fb.className = 'feedback wrong'; return; }
+  if (benar === total) { fb.textContent = '✅ Semua benar! (' + benar + '/' + total + ')'; fb.className = 'feedback correct'; }
+  else { fb.textContent = '❌ Baru ' + benar + ' dari ' + total + ' benar.'; fb.className = 'feedback wrong'; }
+}
+
+/* ============================================================
+   KUIS 10 SOAL SPtLDV
+   ============================================================ */
+const kuisData = [
+  {
+    type: 'mcq',
+    question: 'Titik berikut yang memenuhi pertidaksamaan 2x + 3y ≤ 12 adalah ....',
+    options: ['(4, 1)', '(3, 3)', '(2, 3)', '(1, 4)', '(5, 1)'],
+    correct: '(4, 1)'
+  },
+  {
+    type: 'mcq',
+    question: 'Daerah penyelesaian pertidaksamaan 3x + 4y ≤ 12 adalah daerah yang ....',
+    options: ['Memuat titik asal O(0,0)', 'Tidak memuat titik asal O(0,0)', 'Terletak tepat pada garis', 'Terletak di atas garis', 'Hanya di kuadran II'],
+    correct: 'Memuat titik asal O(0,0)'
+  },
+  {
+    type: 'mcq',
+    question: 'Titik yang memenuhi sistem x + y ≤ 6; 2x + y ≥ 8; x ≥ 0; y ≥ 0 adalah ....',
+    options: ['(2, 2)', '(3, 3)', '(5, 2)', '(1, 5)', '(4, 1)'],
+    correct: '(3, 3)'
+  },
+  {
+    type: 'mcq',
+    question: 'Toko kue: Kue A perlu 200 g tepung & 100 g gula; Kue B perlu 100 g tepung & 150 g gula. Tersedia 4.000 g tepung & 3.000 g gula. Model matematika yang tepat adalah ....',
+    options: ['2x + y ≤ 40; 2x + 3y ≤ 60; x, y ≥ 0', '2x + y ≥ 40; 2x + 3y ≥ 60; x, y ≥ 0', 'x + 2y ≤ 40; 3x + 2y ≤ 60; x, y ≥ 0', '2x + y ≤ 60; 2x + 3y ≤ 40; x, y ≥ 0', 'x + y ≤ 40; x + y ≤ 60; x, y ≥ 0'],
+    correct: '2x + y ≤ 40; 2x + 3y ≤ 60; x, y ≥ 0'
+  },
+  {
+    type: 'mcq',
+    question: 'Titik pojok dari sistem x + y ≤ 4; x + 3y ≤ 6; x ≥ 0; y ≥ 0 adalah ....',
+    options: ['(3, 1)', '(1, 3)', '(2, 2)', '(4, 1)', '(4, 0)'],
+    correct: '(3, 1)'
+  },
+  {
+    type: 'mcq',
+    question: 'Nilai maksimum f = 3x + 2y dari sistem 2x + y ≤ 8; x + 2y ≤ 10; x, y ≥ 0 adalah ....',
+    options: ['12', '13', '14', '15', '16'],
+    correct: '14'
+  },
+  {
+    type: 'mcq',
+    question: 'Daerah di kuadran I dibatasi garis x + 2y = 8 dan memuat titik (0,0). Pertidaksamaan yang sesuai adalah ....',
+    options: ['x + 2y ≤ 8', 'x + 2y ≥ 8', '2x + y ≤ 8', '2x + y ≥ 8', 'x + y ≤ 8'],
+    correct: 'x + 2y ≤ 8'
+  },
+  {
+    type: 'mcq',
+    question: 'Diketahui sistem x + y ≤ 5; x + 2y ≤ 8; x ≥ 0; y ≥ 0. Nilai maksimum f = 2x + 3y adalah ....',
+    options: ['10', '12', '13', '14', '15'],
+    correct: '13'
+  },
+  {
+    type: 'mcq',
+    question: 'Titik berikut yang BUKAN penyelesaian dari sistem x + y ≤ 5; x ≥ 1; y ≥ 2 adalah ....',
+    options: ['(1, 2)', '(2, 2)', '(3, 2)', '(4, 3)', '(1, 3)'],
+    correct: '(4, 3)'
+  },
+  {
+    type: 'mcq',
+    question: 'Daerah penyelesaian sistem pertidaksamaan linear dua variabel adalah ....',
+    options: [
+      'Irisan dari semua daerah penyelesaian pertidaksamaannya',
+      'Gabungan dari semua daerah penyelesaian',
+      'Daerah yang tidak memenuhi salah satu pertidaksamaan',
+      'Hanya titik-titik pada garis pembatas',
+      'Seluruh bidang koordinat'
+    ],
+    correct: 'Irisan dari semua daerah penyelesaian pertidaksamaannya'
+  }
+];
+
+let kuisIndex = 0;
+let kuisJawaban = {};
+let kuisTimerInterval = null;
+let kuisTimeLeft = 600;
+let kuisFinished = false;
+
+function tampilkanViewKuis(id) {
+  document.querySelectorAll('.kuis-view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function mulaiTimerKuis() {
+  if (kuisTimerInterval) clearInterval(kuisTimerInterval);
+  kuisTimeLeft = 600;
+  updateTimerKuis();
+  kuisTimerInterval = setInterval(() => {
+    kuisTimeLeft--;
+    updateTimerKuis();
+    if (kuisTimeLeft <= 0) {
+      clearInterval(kuisTimerInterval);
+      kuisTimerInterval = null;
+      selesaikanKuis(true);
+    }
+  }, 1000);
+}
+
+function updateTimerKuis() {
+  const min = Math.floor(kuisTimeLeft / 60);
+  const sec = kuisTimeLeft % 60;
+  const el = document.getElementById('kuisTimer');
+  el.textContent = String(min).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+  if (kuisTimeLeft <= 60) el.classList.add('warning');
+  else el.classList.remove('warning');
+}
+
+function renderKuisSoal(index) {
+  const soal = kuisData[index];
+  const huruf = ['A', 'B', 'C', 'D', 'E'];
+  let html = '<div class="kuis-soal-card">';
+  html += '<div class="kuis-nomor">Soal ' + (index + 1) + ' dari ' + kuisData.length + '</div>';
+  html += '<div class="kuis-pertanyaan">' + soal.question + '</div>';
+  html += '<div class="kuis-opsi-list">';
+  soal.options.forEach((opt, i) => {
+    const isSel = kuisJawaban[index] === opt;
+    const safeOpt = opt.replace(/'/g, "\\'");
+    html += '<label class="kuis-opsi ' + (isSel ? 'selected' : '') +
+      '" onclick="pilihKuisOpsi(' + index + ", '" + safeOpt + '\')">' +
+      '<input type="radio" name="kq' + index + '" ' + (isSel ? 'checked' : '') + ' />' +
+      '<span class="huruf">' + huruf[i] + '.</span>' +
+      '<span class="option-text">' + opt + '</span>' +
+      '</label>';
+  });
+  html += '</div></div>';
+  document.getElementById('kuisSoalContainer').innerHTML = html;
+  document.getElementById('kuisProgress').textContent = (index + 1) + ' / ' + kuisData.length;
+  document.getElementById('kuisPrev').disabled = index === 0;
+  const btnNext = document.getElementById('kuisNext');
+  if (index === kuisData.length - 1) {
+    btnNext.textContent = '📨 Selesai';
+    btnNext.className = 'kuis-btn kuis-btn-success';
+  } else {
+    btnNext.textContent = 'Selanjutnya ▶';
+    btnNext.className = 'kuis-btn';
+  }
+}
+
+function pilihKuisOpsi(index, value) {
+  kuisJawaban[index] = value;
+  renderKuisSoal(index);
+}
+function kuisPrev() { if (kuisIndex > 0) { kuisIndex--; renderKuisSoal(kuisIndex); } }
+function kuisNext() {
+  if (kuisIndex < kuisData.length - 1) { kuisIndex++; renderKuisSoal(kuisIndex); }
+  else { selesaikanKuis(); }
+}
+
+function hitungSkorKuis() {
+  let benar = 0;
+  kuisData.forEach((soal, i) => { if (kuisJawaban[i] === soal.correct) benar++; });
+  return benar;
+}
+
+function selesaikanKuis(force) {
+  if (kuisFinished) return;
+  kuisFinished = true;
+  if (kuisTimerInterval) { clearInterval(kuisTimerInterval); kuisTimerInterval = null; }
+
+  const skor = hitungSkorKuis();
+  const nilai = Math.round((skor / kuisData.length) * 100);
+
+  kuisData.forEach((soal, i) => {
+    const jwb = kuisJawaban[i] || '(kosong)';
+    kirimKeSpreadsheet({
+      tipe: 'RESPON', kategori: 'Kuis Akhir', soal_no: i + 1,
+      soal: soal.question, jawaban: jwb, jawaban_benar: soal.correct,
+      status: jwb === soal.correct ? 'Benar' : 'Salah'
+    });
+  });
+
+  kirimKeSpreadsheet({
+    tipe: 'HASIL_KUIS', kategori: 'Rekap Kuis', soal_no: '-',
+    soal: 'Total 10 soal', jawaban: skor + '/10 benar',
+    jawaban_benar: '100', status: 'Nilai: ' + nilai,
+    nilai: nilai, skor: skor, total_soal: kuisData.length
+  });
+
+  tampilkanViewKuis('kuisHasil');
+  document.getElementById('kuisSkorAngka').textContent = nilai;
+  document.getElementById('kuisResultNama').textContent = siswaNama;
+  document.getElementById('kuisResultKelas').textContent = siswaKelas;
+  document.getElementById('kuisResultBenar').textContent = skor;
+  document.getElementById('kuisStatusSend').className = 'kuis-status-send success';
+  document.getElementById('kuisStatusSend').textContent = '✅ Jawaban & nilai terkirim ke guru!';
+}
+
+function resetKuisView() {
+  tampilkanViewKuis('kuisSoal');
+  kuisIndex = 0;
+  kuisJawaban = {};
+  kuisFinished = false;
+  renderKuisSoal(0);
+  mulaiTimerKuis();
+}
+
+/* ============================================================
+   INISIALISASI
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', function () {
+  drawPtLDV();
+  drawSPtLDV();
+  drawMotif();
+  renderKuisSoal(0);
+  goToSlide(0);
+});
+</script>
+</body>
+</html>
